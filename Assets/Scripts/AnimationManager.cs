@@ -35,8 +35,8 @@ public class AnimationManager : MonoBehaviour
 		float startTime = Time.time;
 
 		while (elapsed < dashDuration){
-			float x = Mathf.Lerp(originalPosition.x, target.x, startTime + (elapsed / dashDuration));
-			float y = Mathf.Lerp(originalPosition.y, target.y, startTime + (elapsed / dashDuration));
+			float x = Mathf.Lerp(originalPosition.x, target.x, dashDuration / elapsed);
+			float y = Mathf.Lerp(originalPosition.y, target.y, dashDuration / elapsed);
 
 			transform.localPosition = new Vector3(x, y, originalPosition.z);
 

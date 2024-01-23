@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum Player {
 	One,
@@ -15,24 +16,31 @@ public class GameManager : MonoBehaviour
 	private List<float> penalty;
 	private List<float> delay;
 
+	[Header("Timing")]
 	public float cooldown;
 	public float minimumTime;
-	private float timing;
 	public float restartDelay;
+	private float timing;
 
 	private bool canClick;
 	private bool winner;
 
-	private AudioSource source;
+	[Header("Audio")]
 	public AudioClip yo;
 	public AudioClip signal;
 	public AudioClip slash;
 	public AudioClip whoosh;
+	private AudioSource source;
 
+	[Header("Sprites")]
 	public List<SpriteRenderer> playerSprites;
 
 	private ScoreManager score;
 	private AnimationManager animations;
+
+	[Header("Timing Text")]
+	public TextMeshProUGUI textPlayer1;
+	public TextMeshProUGUI textPlayer2;
 
     void Start()
     {
@@ -88,19 +96,23 @@ public class GameManager : MonoBehaviour
 		}
 
 		// check winner
-		if (winner && (delay[0] != float.MaxValue || delay[1] != float.MaxValue)){
+		if (winner && (delay[0] != float.MaxValue || delay[1] != float.MaxValue) && source.clip != slash){
 			winner = false;
 
 			if (delay[0] == delay[1] && delay[0] != 0f){
 				Debug.LogError("Tied game");
-			}
-			if (delay[0] < delay[1]){
-				score.IncreaseScore(Player.One);
-				animations.DashPlayer(Player.One);
 			} else {
-				score.IncreaseScore(Player.Two);
-				animations.DashPlayer(Player.Two);
+				if (delay[0] < delay[1]){
+					score.IncreaseScore(Player.One);
+					animations.DashPlayer(Player.One);
+				} else {
+					score.IncreaseScore(Player.Two);
+					animations.DashPlayer(Player.Two);
+				}
 			}
+
+			StartCoroutine(UpdateText());
+
 			source.clip = slash;
 			source.Play();
 
@@ -146,5 +158,20 @@ public class GameManager : MonoBehaviour
 	private IEnumerator RestartGame(){
 		yield return new WaitForSeconds(restartDelay);
 		InitializeGame();
+	}
+
+	private IEnumerator UpdateText(){
+		for (int player = 0; player < PLAYER_COUNT; player++){
+			if (delay[player] == float.MaxValue){
+				delay[player] = 0f;
+			} 
+		}
+		yield return new WaitForSeconds(0.5f);
+		textPlayer1.text = ((int)(delay[0] * 100f)).ToString();
+		textPlayer2.text = ((int)(delay[1] * 100f)).ToString();
+
+		yield return new WaitForSeconds(1.5f);
+		textPlayer1.text = ""; 
+		textPlayer2.text = ""; 
 	}
 }

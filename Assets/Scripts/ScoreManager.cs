@@ -27,6 +27,6 @@ public class ScoreManager : MonoBehaviour
 	}
 
 	private void UpdateScoreText(){
-		scoreText.text = "player 1 : " + player1Score + " - " + player2Score + " : player 2";
+		scoreText.text = + player1Score + " - " + player2Score;
 	}
 }
