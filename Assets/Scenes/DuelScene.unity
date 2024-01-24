@@ -600,6 +600,7 @@ GameObject:
   - component: {fileID: 832065196}
   - component: {fileID: 832065197}
   - component: {fileID: 832065198}
+  - component: {fileID: 832065199}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -684,6 +685,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ef3e796ffa1b99e99b33699e970bd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &832065199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832065195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034624b18044ca0b6a73c55d99d2c2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1040933506
@@ -1111,7 +1124,9 @@ MonoBehaviour:
   player2Sprite: {fileID: 832065197}
   player1DashTarget: {fileID: 1775481383}
   player2DashTarget: {fileID: 520929662}
-  dashSpeed: 2
+  player1Dash: {fileID: 2016512813}
+  player2Dash: {fileID: 832065199}
+  dashSpeed: 0.2
 --- !u!1 &1649094724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,6 +1546,7 @@ GameObject:
   - component: {fileID: 2016512810}
   - component: {fileID: 2016512811}
   - component: {fileID: 2016512812}
+  - component: {fileID: 2016512813}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -1615,6 +1631,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ef3e796ffa1b99e99b33699e970bd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2016512813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016512809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034624b18044ca0b6a73c55d99d2c2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
