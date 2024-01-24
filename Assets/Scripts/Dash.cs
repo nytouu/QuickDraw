@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-	public IEnumerator Play(Transform target, float speed, float duration){
+	public IEnumerator Play(Transform target, float speed, float duration, float stayTime){
 		Vector3 originalPosition = transform.position;
 		float elapsed = 0f;
 
@@ -17,7 +17,7 @@ public class Dash : MonoBehaviour
 			yield return null;
 		}
 
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(stayTime);
 		transform.localPosition = originalPosition;
 	}
 }

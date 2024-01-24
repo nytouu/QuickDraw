@@ -21,6 +21,7 @@ public class AnimationManager : MonoBehaviour
 	public Dash player1Dash;
 	public Dash player2Dash;
 	public float dashSpeed;
+	public float stayAfterDash;
 
 	[Header("Win titles")]
 	public SpriteRenderer player1Title;
@@ -29,12 +30,12 @@ public class AnimationManager : MonoBehaviour
 	public void DashPlayer(Player player){
 		switch (player){
 			case Player.One:
-				player1Animator.Play("PlaceholderAttack");
-				StartCoroutine(player1Dash.Play(player1DashTarget, dashSpeed, 0.15f));
+				player1Animator.Play("Start");
+				StartCoroutine(player1Dash.Play(player1DashTarget, dashSpeed, 0.15f, stayAfterDash));
 				break;
 			case Player.Two:
-				player2Animator.Play("PlaceholderAttack");
-				StartCoroutine(player2Dash.Play(player2DashTarget, -dashSpeed, 0.15f));
+				player2Animator.Play("Start");
+				StartCoroutine(player2Dash.Play(player2DashTarget, -dashSpeed, 0.15f, stayAfterDash));
 				break;
 		}
 	}
