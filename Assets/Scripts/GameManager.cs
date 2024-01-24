@@ -112,10 +112,12 @@ public class GameManager : MonoBehaviour
 			} else {
 				// someone wins
 				if (delay[0] < delay[1]){
+					animations.MoveTitle(Player.One);
 					score.IncreaseScore(Player.One);
 					animations.DashPlayer(Player.One);
 					animations.ShakePlayer(Player.Two);
 				} else {
+					animations.MoveTitle(Player.Two);
 					score.IncreaseScore(Player.Two);
 					animations.DashPlayer(Player.Two);
 					animations.ShakePlayer(Player.One);
