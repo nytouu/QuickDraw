@@ -10,14 +10,14 @@ public class Dash : MonoBehaviour
 		while (elapsed < duration){
 			float x = transform.position.x + speed;
 
-			transform.localPosition= new Vector3(x, originalPosition.y, originalPosition.z);
+			transform.localPosition = new Vector3(x, originalPosition.y, originalPosition.z);
 
 			elapsed += Time.deltaTime;
 
 			yield return null;
 		}
 
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1f);
 		transform.localPosition = originalPosition;
 	}
 }
