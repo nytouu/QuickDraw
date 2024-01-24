@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 		attacking = new List<bool>();
 		penalty = new List<float>();
 		delay = new List<float>();
+
 		InitializeGame();
     }
 
@@ -71,6 +72,9 @@ public class GameManager : MonoBehaviour
 				penalty[player] = cooldown;
 
 				playerSprites[player].color = Color.red;
+
+				source.clip = whoosh;
+				source.Play();
 
 				Debug.Log("Player " + player + " clicked too early !");
 			}
@@ -100,24 +104,28 @@ public class GameManager : MonoBehaviour
 			winner = false;
 
 			if (delay[0] == delay[1] && delay[0] != 0f){
+				// tie
 				Debug.LogError("Tied game");
+
+				source.clip = whoosh;
+				source.Play();
 			} else {
+				// someone wins
 				if (delay[0] < delay[1]){
 					score.IncreaseScore(Player.One);
 					animations.DashPlayer(Player.One);
+					animations.ShakePlayer(Player.Two);
 				} else {
 					score.IncreaseScore(Player.Two);
 					animations.DashPlayer(Player.Two);
+					animations.ShakePlayer(Player.One);
 				}
+
+				source.clip = slash;
+				source.Play();
 			}
 
 			StartCoroutine(UpdateText());
-
-			source.clip = slash;
-			source.Play();
-
-			animations.CameraShake();
-
 			StartCoroutine(RestartGame());
 		}
 
